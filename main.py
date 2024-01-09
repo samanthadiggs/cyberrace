@@ -42,6 +42,7 @@ def player_run():
     global animation_list
     for x in range(8):
         animation_list.append(schoolgirl_run_sprite_sheet.get_image(x, 48, 48, 3, BLACK))
+    print("player running")
 def player_idle():
     global animation_list
     for x in range(4):
@@ -52,7 +53,6 @@ def player_jump():
     for x in range(4):
         animation_list.append(schoolgirl_jump_sprite_sheet.get_image(x, 48, 48, 3, BLACK))
 
-player_run()
 
 bg_images = []
 for i in range(1,4):
@@ -60,7 +60,6 @@ for i in range(1,4):
     bg_images.append(bg_image)
 bg_width = bg_images[0].get_width() 
 bg_height= bg_images[0].get_height()
-bg_
 print(bg_width)
 tiles = math.ceil(800 / bg_width) * 1
 
@@ -113,6 +112,7 @@ while True:
 
 
     #show frame in animation
+    player_run()
     screen.blit(animation_list[frame], (80, 75))
     # scroll background logic
     scroll -= 5
