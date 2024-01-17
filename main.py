@@ -40,18 +40,25 @@ frame = 0
 
 def player_run():
     global animation_list
+    animation_list.clear()
     for x in range(8):
         animation_list.append(schoolgirl_run_sprite_sheet.get_image(x, 48, 48, 3, BLACK))
     print("player running")
 def player_idle():
-    global animation_list
+    global animation_list, frame
+    animation_list.clear()
     for x in range(4):
         animation_list.append(schoolgirl_idle_sprite_sheet.get_image(x, 48, 48, 3, BLACK))
 
-def player_jump():
-    global animation_list
-    for x in range(4):
-        animation_list.append(schoolgirl_jump_sprite_sheet.get_image(x, 48, 48, 3, BLACK))
+def player_jump(length):
+    global animation_list, frame
+    animation_list.clear()
+    i = 0 
+    while i < length:
+        for x in range(4):
+            animation_list.append(schoolgirl_jump_sprite_sheet.get_image(x, 48, 48, 3, BLACK))
+        i += 1
+    print(f"Jump frame is {frame}, and amination list is {animation_list}")
 
 
 bg_images = []
@@ -86,13 +93,16 @@ while True:
             exit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                player_jump()
+                player_jump(3)
+                frame = 0
                 print("jump")
                 player_gravity = -20
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_SPACE:
                 player_run()
                 print("key up")
+        else:
+            player_run()
         
     #screen.blit(test_surface, (0,0))#put one surface on another
     draw_bg()
@@ -108,11 +118,8 @@ while True:
         if frame >= len(animation_list):
             frame = 0
 
-
-
-
     #show frame in animation
-    player_run()
+    print(f"frame is {frame} and animation list is {len(animation_list)}")
     screen.blit(animation_list[frame], (80, 75))
     # scroll background logic
     scroll -= 5
