@@ -2,7 +2,7 @@ import pygame
 from sys import exit
 import math
 import os
-import spritesheet
+from spritesheet import SpriteSheet
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -66,7 +66,11 @@ for i in range(1,4):
     bg_image = pygame.image.load(f"Assets/cyberpunk-street-files/Version 1/PNG/layers/plx-{i}.png").convert_alpha()
     bg_images.append(bg_image)
 bg_width = bg_images[0].get_width() 
+<<<<<<< HEAD
+bg_height= bg_images[0].get_height() 
+=======
 bg_height= bg_images[0].get_height()
+>>>>>>> 74ad1e9d71751800eb81d66e03e618bf712a0f10
 print(bg_width)
 tiles = math.ceil(800 / bg_width) * 1
 
